@@ -1,4 +1,4 @@
-package com.megamind.lemondedansmonphone.ui.theme
+package com.megamind.lemondedansmonphone.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,36 +10,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.megamind.lemondedansmonphone.ui.screen.ContriesScreen
+import com.megamind.lemondedansmonphone.ui.theme.LeMondeDansMonPhoneTheme
+import com.megamind.lemondedansmonphone.ui.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+            
             LeMondeDansMonPhoneTheme {
-                // A surface container using the 'background' color from the theme
+                val viewModel : MainViewModel= hiltViewModel()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                   ContriesScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LeMondeDansMonPhoneTheme {
-        Greeting("Android")
-    }
-}
